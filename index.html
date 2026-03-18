@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字神谕 | 答案之书</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <main>
+        <div id="canvas-zone">
+            <canvas id="ascii-canvas"></canvas>
+            <div class="hero-text">
+                <div class="hero-headline scramble-target" id="answer-display">Awaiting Query_</div>
+                <div class="hero-subline">Click anywhere on the digital landscape to seek guidance.</div>
+            </div>
+        </div>
+
+        <div id="panel-zone">
+            <div class="panel-col">
+                <div>
+                    <div class="meta-line">
+                        <span>Digital Oracle</span>
+                        <span id="timestamp">--:--:--</span>
+                    </div>
+                    <p class="bio-text">
+                        在心中默念你的问题。系统将通过算力与概率，为你解析最终的答案。
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel-col">
+                <ul class="link-list">
+                    <li><a href="#" id="ask-btn">-> Initiate Sequence (抽取答案)</a></li>
+                </ul>
+            </div>
+
+            <div class="panel-col" style="text-align: right; justify-content: space-between;">
+                <div style="font-size: 0.75rem;">© VIBE_CODING</div>
+                <div class="telemetry">
+                    RENDER: <span id="render-ms">0.0</span>ms<br>
+                    X: <span id="mouse-x">0</span> Y: <span id="mouse-y">0</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

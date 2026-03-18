@@ -1,0 +1,127 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #111111;
+    --secondary-color: #888888;
+    --hairline: #e5e5e5;
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+    --pad: 24px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    cursor: none; /* 隐藏系统默认鼠标 */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 自定义鼠标样式 */
+#cursor-dot, #cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    mix-blend-mode: difference;
+}
+#cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+}
+#cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    transition: width 0.2s, height 0.2s;
+}
+
+/* 四角装饰文字 */
+.corner-index {
+    position: fixed;
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 1;
+    z-index: 1000;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+.corner-index:hover { color: var(--secondary-color); }
+.tl { top: var(--pad); left: var(--pad); }
+.tr { top: var(--pad); right: var(--pad); }
+.bl { bottom: var(--pad); left: var(--pad); }
+.br { bottom: var(--pad); right: var(--pad); }
+
+/* ASCII 互动区 */
+#canvas-zone {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid var(--hairline);
+}
+#ascii-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* 底部面板区 */
+#panel-zone {
+    height: 30vh;
+    width: 100%;
+    padding: var(--pad);
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr;
+    gap: 40px;
+    align-content: start;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+.panel-col { display: flex; flex-direction: column; gap: 24px; }
+.meta-line {
+    display: flex; gap: 12px; color: var(--secondary-color);
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+}
+.bio-text { max-width: 400px; color: var(--text-color); }
+
+/* 链接特效 */
+.link-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.link-list a {
+    text-decoration: none; color: var(--text-color); position: relative; display: inline-block; width: fit-content;
+}
+.link-list a::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px;
+    background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.4s ease;
+}
+.link-list a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.telemetry { font-family: var(--font-mono); font-size: 0.7rem; color: var(--secondary-color); text-align: right; margin-top: auto; }
+
+/* 核心答案文字 */
+.hero-text { position: absolute; bottom: 24px; left: var(--pad); pointer-events: none; }
+.hero-headline {
+    font-size: 4rem; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 8px;
+    color: var(--text-color);
+}
+.hero-subline { font-family: var(--font-mono); font-size: 0.8rem; color: var(--secondary-color); }
+
+@media (max-width: 768px) {
+    #panel-zone { grid-template-columns: 1fr; height: auto; min-height: 30vh; }
+    .corner-index { font-size: 1.5rem; }
+    .hero-headline { font-size: 2.5rem; }
+}
